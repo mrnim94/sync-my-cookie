@@ -1,0 +1,59 @@
+name: SyncMyCookie CI
+
+on:
+  push:
+    branches:
+      - master  # or the branch you prefer
+  pull_request:
+    branches:
+      - master  # or the branch you prefer
+
+jobs:
+  # Install dependencies, build the extension, and run linting
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Use the appropriate Node.js version
+
+      - name: Install dependencies
+        run: |
+          yarn install  # Use npm if you prefer npm
+
+      - name: Lint the code (optional)
+        run: |
+          yarn lint  # If you have a linting script in package.json
+          
+      - name: Build the extension
+        run: |
+          yarn build  # Runs the build script to generate the extension
+
+      # Upload built extension as an artifact (optional step)
+      - name: Upload Extension Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: sync-my-cookie-extension
+          path: build/  # Path to the output build folder
+          
+  # Optional: Deploy to Chrome Web Store (if you want to automate deployment)
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build  # Only run this after the build job has completed
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Example step for publishing to Chrome Web Store (if you have credentials)
+      # Replace the following with your deployment method
+      - name: Publish to Chrome Web Store
+        run: |
+          echo "Publishing to Chrome Web Store (replace with real deployment commands)"
+          # You would need to configure the deployment using Chrome Web Store API here
+          # This can include setting up Google credentials, API keys, etc.
