@@ -122,12 +122,20 @@ chrome.cookies.onChanged.addListener(_.debounce(async () => {
 }, DEBOUNCE_DELAY));
 
 function badge(text: string, color: string = 'red', delay: number = 10000) {
-  chrome.browserAction.setBadgeText({text});
-  chrome.browserAction.setBadgeBackgroundColor({color});
-  setTimeout(() => {
-    chrome.browserAction.setBadgeText({text: ''});
-  }, delay);
+  chrome.action.setBadgeText({text});
+  chrome.action.setBadgeBackgroundColor({color});
+  // 定时器改为使用 Chrome 的 Alarm API
+  const alarmName = `badge_clear_${Date.now()}`;
+  chrome.alarms.create(alarmName, {
+    delayInMinutes: delay / 60000
+  });
 }
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name.startsWith('badge_clear_')) {
+    chrome.action.setBadgeText({text: ''});
+  }
+});
 
 async function filterDomain(type: 'autoPush' | 'autoMerge'): Promise<Array<[string, AutoConfiguration]>> {
   let list: Array<[string, AutoConfiguration]>;

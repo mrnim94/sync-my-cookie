@@ -1,7 +1,7 @@
 import { Kevast } from 'kevast';
 import { KevastChromeLocal, KevastChromeSync } from 'kevast-chrome';
 import { KevastEncrypt } from 'kevast-encrypt';
-import { KevastGist } from 'kevast-gist';
+import { KevastGist } from '../utils/kevast-gist';
 import { Pair } from 'kevast/dist/Pair';
 import * as keys from './keys';
 
