@@ -7,7 +7,8 @@ const DEBOUNCE_DELAY = 10000;
 /* tslint:disable no-console */
 
 // Auto Merge
-chrome.windows.onCreated.addListener(async () => {
+const handleAutoMerge = async () => {
+  await gist.updateData()
   console.log('自动合并运行中');
   const list = (await filterDomain('autoMerge')).map(([domain]) => domain);
   if (list.length === 0) {
@@ -25,10 +26,10 @@ chrome.windows.onCreated.addListener(async () => {
   if (done) {
     badge(`↓${done}`);
   }
-});
+};
 
 // Auto Push
-chrome.cookies.onChanged.addListener(_.debounce(async () => {
+const handleAutoPush = _.debounce(async () => {
   try {
     console.log('自动推送运行中');
     const list = await filterDomain('autoPush');
@@ -119,7 +120,10 @@ chrome.cookies.onChanged.addListener(_.debounce(async () => {
     console.error(err);
     badge('err', 'black', 100000);
   }
-}, DEBOUNCE_DELAY));
+}, DEBOUNCE_DELAY);
+
+chrome.windows.onCreated.addListener(handleAutoMerge);
+chrome.cookies.onChanged.addListener(handleAutoPush);
 
 function badge(text: string, color: string = 'red', delay: number = 10000) {
   chrome.action.setBadgeText({text});

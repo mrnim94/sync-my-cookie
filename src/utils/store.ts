@@ -84,6 +84,7 @@ export const auto = {
 };
 
 let initialized = false;
+let kevastGist: KevastGist | null = null
 export const gist = {
   async init(): Promise<boolean> {
     if (initialized) {
@@ -96,7 +97,8 @@ export const gist = {
     }
     const gistId = await setting.get('gistId');
     const filename = await setting.get('filename');
-    gistStore.add(new KevastGist(token, gistId, filename));
+    kevastGist = new KevastGist(token, gistId, filename)
+    gistStore.add(kevastGist);
     gistStore.use(new KevastEncrypt(password));
     initialized = true;
     return true;
@@ -136,4 +138,7 @@ export const gist = {
     await gistStore.bulkSet(bulk);
     return newDomainList;
   },
+  async updateData() {
+    await kevastGist?.update()
+  }
 };

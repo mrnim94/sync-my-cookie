@@ -59,22 +59,29 @@ export class KevastGist implements Storage {
       return
     }
     try {
-      if (this.gistId && this.filename) {
-        this.cache = await this.read()
-      }
-      if (!this.gistId) {
-        this.filename = this.filename = DEFAULT_FILENAME
-        this.gistId = this.gistId = await this.createGist()
-        this.cache = {}
-      }
-      if (!this.filename) {
-        this.filename = DEFAULT_FILENAME
-        await this.createFile()
-        this.cache = {}
-      }
+      await this.update(true)
       this.initialized = true
     } catch (err) {
       handleError(err)
+    }
+  }
+
+  public async update(force: boolean = false): Promise<void> {
+    if(!force && !this.initialized) {
+      await this.init()
+    }
+    if (this.gistId && this.filename) {
+      this.cache = await this.read()
+    }
+    if (!this.gistId) {
+      this.filename = DEFAULT_FILENAME
+      this.gistId = this.gistId = await this.createGist()
+      this.cache = {}
+    }
+    if (!this.filename) {
+      this.filename = DEFAULT_FILENAME
+      await this.createFile()
+      this.cache = {}
     }
   }
   private async write(): Promise<void> {
