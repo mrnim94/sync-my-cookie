@@ -3,7 +3,8 @@ import './setting.scss';
 const style = require('./setting.module.scss');
 
 import { Modal } from 'antd';
-import { Button, Collapse, Icon, Input, message, Tooltip } from 'antd';
+import { Button, Collapse, Input, message, Tooltip } from 'antd';
+import { GithubOutlined, KeyOutlined, ForkOutlined, FileOutlined, SettingOutlined, LogoutOutlined, LoginOutlined } from '@ant-design/icons';
 
 import { KevastGist } from 'kevast-gist';
 import { setting } from '../../utils/store';
@@ -40,7 +41,7 @@ class Setting extends Component<Prop, State> {
         <Input
           name='token'
           placeholder='GitHub Access Token'
-          prefix={<Icon type='github' style={{ color: 'rgba(0,0,0,.25)' }} />}
+          prefix={<GithubOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
           allowClear={true}
           onChange={this.handleChange}
           value={this.state.token}
@@ -50,7 +51,7 @@ class Setting extends Component<Prop, State> {
           <Input
             name='password'
             placeholder='Password'
-            prefix={<Icon type='key' style={{ color: 'rgba(0,0,0,.25)' }} />}
+            prefix={<KeyOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
             allowClear={true}
             onChange={this.handleChange}
             value={this.state.password}
@@ -62,7 +63,7 @@ class Setting extends Component<Prop, State> {
             <Input
               name='gistId'
               placeholder='Gist ID'
-              prefix={<Icon type='fork' style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<ForkOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
               allowClear={true}
               onChange={this.handleChange}
               value={this.state.gistId}
@@ -71,7 +72,7 @@ class Setting extends Component<Prop, State> {
             <Input
               name='filename'
               placeholder='File Name'
-              prefix={<Icon type='file' style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<FileOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
               allowClear={true}
               onChange={this.handleChange}
               value={this.state.filename}
@@ -84,7 +85,7 @@ class Setting extends Component<Prop, State> {
           disabled={!this.state.token || !this.state.password}
           onClick={this.handleClick}
           block={true}
-          icon='setting'
+          icon={<SettingOutlined />}
           loading={this.state.loading}
         >
           Set
@@ -92,7 +93,7 @@ class Setting extends Component<Prop, State> {
         <div className={style.port}>
           <Button
             type='primary'
-            icon='logout'
+            icon={<LogoutOutlined />}
             className={style.button}
             onClick={this.handleExport}
             disabled={!this.state.token ||
@@ -103,7 +104,7 @@ class Setting extends Component<Prop, State> {
             Export
           </Button>
           <Button
-            icon='login'
+            icon={<LoginOutlined />}
             className={style.button}
             onClick={this.handleImportOpen}
           >
@@ -111,7 +112,7 @@ class Setting extends Component<Prop, State> {
           </Button>
           <Modal
             title='Import Setting'
-            visible={this.state.importModal}
+            open={this.state.importModal}
             onOk={this.handleImport}
             onCancel={this.handleImportClose}
           >

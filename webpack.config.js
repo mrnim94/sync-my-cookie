@@ -43,6 +43,9 @@ function create(file) {
       alias: {
         '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.ts'),
       },
+      fallback: {
+        "url": require.resolve("url/")
+      }
     },
     module: {
       rules: [
@@ -126,7 +129,10 @@ function getStyleLoaders(cssOptions, preProcessor, preProcessorOptions) {
   if (preProcessor) {
     loaders.push({
       loader: preProcessor,
-      options: preProcessorOptions,
+      options: {
+        api: 'modern-compiler',
+        ...preProcessorOptions
+      },
     });
   }
   return loaders;

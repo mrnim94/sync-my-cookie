@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 const style = require('./console.module.scss');
 
-import { Button, Icon, Modal, Select, Spin, Switch, Tooltip } from 'antd';
+import { Button, Modal, Select, Spin, Switch, Tooltip } from 'antd';
+import { CloudUploadOutlined, SettingOutlined, CloudDownloadOutlined } from '@ant-design/icons';
 import { auto, AutoConfiguration, gist } from '../../utils/store';
 const { Textfit } = require('react-textfit');
 
@@ -48,11 +49,11 @@ class Console extends Component<Prop, State> {
           <div className={style.sliders}>
             <div className={style.one}>
               <div className={style.secret}>
-                <Icon type='cloud-upload' className={[style.upload, style.icon].join(' ')} />
+                <CloudUploadOutlined className={[style.upload, style.icon].join(' ')} />
                 <Tooltip placement='topLeft' title='Configure Auto Push'>
                   <Button
                     shape='circle'
-                    icon='setting'
+                    icon={<SettingOutlined />}
                     className={style.setting}
                     onClick={this.handleAutoPushConfigClick}
                     disabled={!this.props.canMerge}
@@ -60,7 +61,7 @@ class Console extends Component<Prop, State> {
                 </Tooltip>
                 <Modal
                   title='Configure Auto Push Rules'
-                  visible={this.state.configuring}
+                  open={this.state.configuring}
                   onOk={this.handleAutoPushConfigDone}
                   onCancel={this.handleAutoPushConfigClose}
                 >
@@ -85,7 +86,7 @@ class Console extends Component<Prop, State> {
               />
             </div>
             <div className={style.one}>
-              <Icon type='cloud-download' className={style.icon} />
+              <CloudDownloadOutlined className={style.icon} />
               <span className={style.description}>Auto Merge</span>
               <Switch
                 checked={this.state.autoMerge}
