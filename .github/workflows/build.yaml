@@ -19,7 +19,7 @@ jobs:
           node-version: '18' # Use a stable LTS version of Node.js
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: Build the extension
         run: yarn build
