@@ -1,26 +1,28 @@
 {
   "compilerOptions": {
+    "outDir": "./build/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "jsx": "react-jsx",
     "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    "downlevelIteration": true
+    "esModuleInterop": true,
+    "baseUrl": "src",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "paths": {
+      "@ant-design/icons/lib/dist$": ["./icons.ts"]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
-  "include": [
-    "src"
+  "exclude": [
+    "node_modules",
+    "build"
   ]
 }
