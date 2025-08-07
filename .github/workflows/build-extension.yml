@@ -37,11 +37,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential python3-dev
         
-    - name: Configure npm and install dependencies
-      run: |
-        npm config set python python3
-        export PYTHON=python3
-        yarn install --frozen-lockfile --ignore-engines --network-timeout 600000 || yarn install --network-timeout 600000
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile --ignore-engines --network-timeout 600000 || yarn install --network-timeout 600000
+      env:
+        PYTHON: python3
+        npm_config_python: python3
       
     - name: Lint code
       run: yarn lint
@@ -95,11 +95,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential python3-dev
         
-    - name: Configure npm and install dependencies
-      run: |
-        npm config set python python3
-        export PYTHON=python3
-        yarn install --frozen-lockfile --ignore-engines --network-timeout 600000 || yarn install --network-timeout 600000
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile --ignore-engines --network-timeout 600000 || yarn install --network-timeout 600000
+      env:
+        PYTHON: python3
+        npm_config_python: python3
       
     - name: Build extension
       run: yarn build
