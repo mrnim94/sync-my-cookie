@@ -27,21 +27,21 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
         
-    - name: Setup Python for node-sass
+    - name: Setup Python 2 for node-gyp
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '2.7'
         
     - name: Install build dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential python3-dev
+        sudo apt-get install -y build-essential python2-dev python3-dev
         
     - name: Install dependencies
       run: yarn install --frozen-lockfile --ignore-engines --network-timeout 600000 || yarn install --network-timeout 600000
       env:
-        PYTHON: python3
-        npm_config_python: python3
+        PYTHON: python2
+        npm_config_python: python2
       
     - name: Lint code
       run: yarn lint
@@ -85,21 +85,21 @@ jobs:
         node-version: '14.x'
         cache: 'yarn'
         
-    - name: Setup Python for node-sass
+    - name: Setup Python 2 for node-gyp
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '2.7'
         
     - name: Install build dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential python3-dev
+        sudo apt-get install -y build-essential python2-dev python3-dev
         
     - name: Install dependencies
       run: yarn install --frozen-lockfile --ignore-engines --network-timeout 600000 || yarn install --network-timeout 600000
       env:
-        PYTHON: python3
-        npm_config_python: python3
+        PYTHON: python2
+        npm_config_python: python2
       
     - name: Build extension
       run: yarn build
