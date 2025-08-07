@@ -4,27 +4,7 @@ This repository contains GitHub Actions workflows to automatically build and pac
 
 ## Available Workflows
 
-### 1. `build-extension.yml` - Full Build Workflow
-
-**Triggers:**
-- Push to main/master/develop branches
-- Pull requests to main/master/develop branches  
-- Manual dispatch
-- Release creation
-
-**Features:**
-- Tests multiple Node.js versions (16.x, 18.x)
-- Runs linting checks
-- Creates both raw build files and zipped extension
-- Uploads artifacts with different retention periods
-- Automatically attaches extension to GitHub releases
-
-**Artifacts:**
-- `sync-my-cookie-extension-node-X.X`: Contains both build folder and zip file
-- `sync-my-cookie-extension-zip-node-X.X`: Contains only the zip file
-- For releases: Automatically attaches zip to the release
-
-### 2. `build-simple.yml` - Simple Build Workflow  
+### 1. `build-simple.yml` - Simple Build Workflow  
 
 **Triggers:**
 - Push to main/master branches
