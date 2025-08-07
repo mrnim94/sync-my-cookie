@@ -27,11 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
         
-    - name: Setup Python 2 for node-gyp
-      uses: actions/setup-python@v4
-      with:
-        python-version: '2.7'
-        
+
     - name: Install build dependencies
       run: |
         sudo apt-get update
@@ -85,11 +81,7 @@ jobs:
         node-version: '14.x'
         cache: 'yarn'
         
-    - name: Setup Python 2 for node-gyp
-      uses: actions/setup-python@v4
-      with:
-        python-version: '2.7'
-        
+
     - name: Install build dependencies
       run: |
         sudo apt-get update
