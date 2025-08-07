@@ -22,15 +22,18 @@ jobs:
     - name: Setup Python for node-sass
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
+        python-version: '3.9'
         
     - name: Install build dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential python3-dev
         
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
+    - name: Configure npm and install dependencies
+      run: |
+        npm config set python python3
+        export PYTHON=python3
+        yarn install --frozen-lockfile --ignore-engines --network-timeout 600000 || yarn install --network-timeout 600000
       
     - name: Build extension
       run: yarn build
@@ -46,4 +49,3 @@ jobs:
         name: sync-my-cookie-extension
         path: sync-my-cookie-extension.zip
         retention-days: 30
-        
