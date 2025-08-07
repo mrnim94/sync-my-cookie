@@ -23,13 +23,11 @@ jobs:
     - name: Install build dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential python2-dev python3-dev
+        sudo apt-get install -y build-essential python3-dev
         
     - name: Install dependencies
       run: yarn install --frozen-lockfile --ignore-engines --network-timeout 600000 || yarn install --network-timeout 600000
-      env:
-        PYTHON: python2
-        npm_config_python: python2
+      
       
     - name: Build extension
       run: yarn build
