@@ -1,7 +1,11 @@
-import { parse } from 'url';
-
 export function getDomain(url: string): string {
-  const hostname =  parse(url).hostname || '';
+  let hostname = '';
+  try {
+    hostname = new URL(url).hostname;
+  } catch (e) {
+    // Invalid URL, return empty string
+    return '';
+  }
   const lastDot = hostname.lastIndexOf('.');
   const nextDot = hostname.lastIndexOf('.', lastDot - 1);
   if (nextDot !== -1) {

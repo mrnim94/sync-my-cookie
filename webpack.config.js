@@ -46,6 +46,10 @@ function create(file) {
       alias: {
         '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.ts'),
       },
+      fallback: {
+        "url": false,
+        "crypto": false
+      }
     },
     module: {
       rules: [
@@ -85,7 +89,11 @@ function create(file) {
               importLoaders: 2,
             },
             'less-loader',
-            { javascriptEnabled: true },
+            { 
+              lessOptions: {
+                javascriptEnabled: true
+              }
+            },
           ),
         },
       ],
