@@ -2,7 +2,7 @@ name: Build Extension (Simple)
 
 on:
   push:
-    branches: [ main, master, feat/manifestV3 ]
+    branches: [ main, master]
   workflow_dispatch:
 
 jobs:
