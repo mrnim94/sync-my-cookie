@@ -123,9 +123,11 @@ class Console extends Component<Prop, State> {
     }
   }
 
-  public async componentWillReceiveProps(nextProps: Prop) {
-    const config = await auto.get(nextProps.domain);
-    this.setState({...config});
+  public componentWillReceiveProps(nextProps: Prop) {
+    // Avoid returning Promise from lifecycle method; update state asynchronously
+    auto.get(nextProps.domain).then((config) => {
+      this.setState({ ...config });
+    });
   }
 
   private handleAutoPushConfigClick = async () => {
