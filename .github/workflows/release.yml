@@ -25,8 +25,13 @@ jobs:
         run: yarn install
 
       - name: Build extension
-        run: yarn build || true
-        continue-on-error: true
+        run: |
+          yarn build 2>&1 | tee build.log
+          exit 0
+        
+      - name: Show build log
+        if: always()
+        run: cat build.log || echo "No build log found"
         
       - name: Verify build output
         run: |
