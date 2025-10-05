@@ -53,7 +53,7 @@ function create(file) {
           test: /\.tsx?$/,
           use: [
             { loader: 'babel-loader' },
-            { loader: 'awesome-typescript-loader' },
+            { loader: 'ts-loader' },
           ]
         },
         {
@@ -71,8 +71,9 @@ function create(file) {
           use: getStyleLoaders(
             {
               importLoaders: 2,
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]'
+              modules: {
+                localIdentName: '[name]__[local]__[hash:base64:5]'
+              }
             },
             'sass-loader'
           ),
@@ -106,18 +107,17 @@ function getStyleLoaders(cssOptions, preProcessor, preProcessorOptions) {
       // package.json
       loader: 'postcss-loader',
       options: {
-        // Necessary for external CSS imports to work
-        // https://github.com/facebook/create-react-app/issues/2677
-        ident: 'postcss',
-        plugins: () => [
-          require('postcss-flexbugs-fixes'),
-          require('postcss-preset-env')({
-            autoprefixer: {
-              flexbox: 'no-2009',
-            },
-            stage: 3,
-          }),
-        ],
+        postcssOptions: {
+          plugins: [
+            'postcss-flexbugs-fixes',
+            ['postcss-preset-env', {
+              autoprefixer: {
+                flexbox: 'no-2009',
+              },
+              stage: 3,
+            }],
+          ],
+        },
       },
     },
   ];
