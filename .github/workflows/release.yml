@@ -25,21 +25,17 @@ jobs:
         run: yarn install
 
       - name: Build extension
+        run: yarn build
+        
+      - name: Verify build output
         run: |
-          yarn build
-          BUILD_EXIT_CODE=$?
-          echo "Build exit code: $BUILD_EXIT_CODE"
-          
-          # Check if build directory and files exist
-          if [ -d "build" ] && [ -f "build/popup.js" ] && [ -f "build/options.js" ] && [ -f "build/background.js" ]; then
-            echo "✅ Build succeeded! All required files present."
-            ls -la build/
-            exit 0
-          else
-            echo "❌ Build failed! Required files missing."
-            ls -la build/ || echo "Build directory doesn't exist"
+          echo "Checking build output..."
+          ls -la build/
+          if [ ! -f "build/popup.js" ] || [ ! -f "build/options.js" ] || [ ! -f "build/background.js" ]; then
+            echo "❌ Error: Required build files missing!"
             exit 1
           fi
+          echo "✅ All required files present"
 
       - name: Create build archive
         run: |

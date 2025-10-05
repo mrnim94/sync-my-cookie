@@ -41,6 +41,11 @@ function create(file) {
       filename: `${name}.js`,
       path: path.resolve(__dirname, './build'),
     },
+    performance: {
+      hints: false,
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000
+    },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
       alias: {
