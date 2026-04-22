@@ -118,3 +118,4 @@ By using `HTTPS` and `AES-128-CBC`, this extension guarantees that your cookies 
 
 ## LICENSE
 MIT
+
