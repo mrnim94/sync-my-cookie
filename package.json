@@ -41,7 +41,6 @@
     "css-loader": "^7.1.2",
     "fs-extra": "^7.0.1",
     "html-webpack-plugin": "^5.6.0",
-    "html-webpack-template": "^6.2.0",
     "kevast": "^0.4.3",
     "kevast-chrome": "^0.0.2",
     "kevast-encrypt": "^0.1.1",
