@@ -67,8 +67,9 @@ function create(file) {
           use: getStyleLoaders(
             {
               importLoaders: 2,
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]'
+              modules: {
+                localIdentName: '[name]__[local]__[hash:base64:5]'
+              }
             },
             'sass-loader'
           ),
@@ -80,7 +81,7 @@ function create(file) {
               importLoaders: 2,
             },
             'less-loader',
-            { javascriptEnabled: true },
+            { lessOptions: { javascriptEnabled: true, math: 'always' } },
           ),
         },
       ],
