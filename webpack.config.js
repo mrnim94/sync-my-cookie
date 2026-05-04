@@ -20,9 +20,7 @@ function create(file) {
   if (ext === '.tsx') {
     plugins.push(new HtmlWebpackPlugin({
       filename: `${name}.html`,
-      inject: false,
-      template: require('html-webpack-template'),
-      appMountId: 'root',
+      template: 'src/template.html',
       title: 'SyncMyCookie'
     }));
   }
