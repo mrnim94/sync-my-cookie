@@ -64,6 +64,12 @@ class Popup extends Component<{}, State> {
 
   private handleDomainClose = (domain: string) => {
     const that = this;
+    // Blur the currently focused element before opening the modal so antd v3
+    // does not put aria-hidden on an ancestor of a focused descendant
+    // (Chrome 124+ accessibility warning).
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     return new Promise<void>(((resolve) => {
       Modal.confirm({
         title: 'Delete',
@@ -105,6 +111,9 @@ class Popup extends Component<{}, State> {
   private handleMerge = async () => {
     const savedCookie = await gist.getCookies(this.state.currentDomain);
     await chromeUtils.importCookies(savedCookie);
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     Modal.success({
       title: 'Merged',
       content: `${savedCookie.length} cookies merged`,
@@ -113,6 +122,9 @@ class Popup extends Component<{}, State> {
 
   private handlePush = async () => {
     const cookies = await chromeUtils.exportCookies(this.state.currentDomain);
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     if (cookies.length === 0) {
       Modal.info({
         title: 'Cancelled',
