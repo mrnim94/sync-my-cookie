@@ -133,6 +133,13 @@ class Console extends Component<Prop, State> {
     const options = _.uniq(cookies.map((cookie) => cookie.name as string)).map((name) => {
       return <Select.Option key={name}>{name}</Select.Option>;
     });
+    // Blur the trigger before opening the modal so antd v3 does not put
+    // aria-hidden on an ancestor of a focused element (Chrome 124+ a11y
+    // warning: 'Blocked aria-hidden on an element because its descendant
+    // retained focus').
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     this.setState({
       configuring: true,
       options,
