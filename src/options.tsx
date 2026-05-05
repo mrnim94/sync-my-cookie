@@ -23,7 +23,7 @@ class Options extends Component {
         window.close();
       },
     });
-  }
+  };
 }
 
 const optionsRoot = document.getElementById('root');

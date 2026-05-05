@@ -157,18 +157,18 @@ class Setting extends Component<Prop, State> {
     });
     message.success('Imported! Click "Set" to finish setting');
     this.handleImportClose();
-  }
+  };
   private handleImportClose = () => {
     this.setState({importModal: false});
-  }
+  };
   private handleImportOpen = () => {
     this.setState({importModal: true});
-  }
+  };
   private handleImportChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
       importValue: e.currentTarget.value,
     });
-  }
+  };
   private handleExport = async () => {
     if (this.state.token &&
       this.state.password &&
@@ -185,7 +185,7 @@ class Setting extends Component<Prop, State> {
         await nav.clipboard.writeText(base64);
         message.success('Exported to your clipboard!');
       }
-  }
+  };
   private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const target = event.currentTarget;
     const value = target.value as any;
@@ -193,7 +193,7 @@ class Setting extends Component<Prop, State> {
     this.setState({
       [name]: value,
     } as Pick<State, keyof State>);
-  }
+  };
   private handleClick = async () => {
     this.setState({
       loading: true,
@@ -204,7 +204,7 @@ class Setting extends Component<Prop, State> {
     } catch (err) {
       Modal.error({
         title: 'Fail',
-        // @ts-ignore
+        // @ts-expect-error err is unknown in TS strict mode; KevastGist throws Error instances
         content: err.message,
       });
       return;
@@ -217,7 +217,7 @@ class Setting extends Component<Prop, State> {
       filename: await kevastGist.getFilename(),
     });
     this.props.onSet();
-  }
+  };
 }
 
 export default Setting;
