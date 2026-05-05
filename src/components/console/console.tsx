@@ -8,7 +8,7 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import { auto, AutoConfiguration, gist } from '../../utils/store';
-const { Textfit } = require('react-textfit');
+import TextFit from '../text-fit/text-fit';
 
 import _ from 'lodash';
 
@@ -44,12 +44,12 @@ class Console extends Component<Prop, State> {
     if (this.props.domain) {
       return (
         <div className={style.wrapper}>
-          <Textfit
+          <TextFit
             className={style.domain}
             max={40}
           >
             {this.props.domain}
-          </Textfit>
+          </TextFit>
           <div className={style.sliders}>
             <div className={style.one}>
               <div className={style.secret}>
