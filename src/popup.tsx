@@ -11,6 +11,12 @@ import Setting from './components/setting/setting';
 import * as chromeUtils from './utils/chrome';
 import { auto, gist } from './utils/store';
 import { getDomain, move2Front } from './utils/utils';
+import { installAriaSentinelFix } from './utils/aria-sentinel-fix';
+
+// Strip aria-hidden from rc-dialog focus-trap sentinels so Chrome 124+
+// does not log 'Blocked aria-hidden on an element because its
+// descendant retained focus' when the user tabs through a Modal.
+installAriaSentinelFix();
 
 interface State {
   isSetting: boolean;
