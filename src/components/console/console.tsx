@@ -170,14 +170,12 @@ class Console extends Component<Prop, State> {
   private handleAutoPushConfigClose = () => {
     this.setState({configuring: false});
   }
-  private handleAutoPushConfigChange =
-    async (value: string[], options: React.ReactElement<any> | Array<React.ReactElement<any>>) => {
-    if (options instanceof Array) {
-      const autoPushName = options
-        .filter((option) => typeof option.key === 'string')
-        .map((option) => option.key) as string[];
-      this.setState({autoPushName});
-    }
+  private handleAutoPushConfigChange = async (value: string[]) => {
+    // antd 5 Select<string[]> with mode='tags' returns the chosen tag
+    // strings directly in `value`, so we just persist that array.
+    // (antd v3/v4 used to pass ReactElement options here; we used to
+    // pull `option.key` out of them - the new API is simpler.)
+    this.setState({autoPushName: value});
   }
   private handlePush = async () => {
     this.setState({pushLoading: true});
