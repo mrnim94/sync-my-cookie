@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ReactDom from 'react-dom';
+import { createRoot } from 'react-dom/client';
 const style = require('./popup.module.scss');
 import './global.scss';
 
@@ -177,7 +177,7 @@ class Popup extends Component<{}, State> {
   }
 }
 
-ReactDom.render(
-  <Popup />,
-  document.getElementById('root'),
-);
+const popupRoot = document.getElementById('root');
+if (popupRoot) {
+  createRoot(popupRoot).render(<Popup />);
+}
