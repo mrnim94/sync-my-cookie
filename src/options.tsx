@@ -17,6 +17,13 @@ class Options extends Component {
     );
   }
   private handleSet = () => {
+    // Blur the currently focused element before opening the modal so antd v3
+    // does not put aria-hidden on an ancestor of a focused descendant
+    // (Chrome 124+ accessibility warning: 'Blocked aria-hidden on an element
+    // because its descendant retained focus').
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     Modal.success({
       title: 'Saved',
       onOk() {
