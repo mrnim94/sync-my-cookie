@@ -47,9 +47,10 @@ function create(file) {
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
-      alias: {
-        '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.ts'),
-      },
+      // antd 4 ships icons via the standalone `@ant-design/icons` package
+      // with proper named exports, so the antd 3 tree-shake hack
+      // (alias '@ant-design/icons/lib/dist$' -> ./src/icons.ts) is no
+      // longer needed and was removed alongside ./src/icons.ts.
       fallback: {
         // webpack 5 dropped automatic node-core polyfills.
         // kevast-encrypt depends on the global `Buffer`.
