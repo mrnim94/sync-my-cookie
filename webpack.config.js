@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
@@ -16,6 +17,13 @@ function create(file) {
   const ext = parsed.ext;
   const plugins = [
     // new BundleAnalyzerPlugin(),
+    // Polyfill the Node `Buffer` global. webpack 5 no longer auto-polyfills
+    // node builtins, but kevast-encrypt calls `Buffer.from(...)` directly
+    // (popup.js: "Uncaught (in promise) ReferenceError: Buffer is not
+    // defined"). Provide it from the `buffer` package.
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
   ];
   if (ext === '.tsx') {
     plugins.push(new HtmlWebpackPlugin({
@@ -41,6 +49,11 @@ function create(file) {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
       alias: {
         '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.ts'),
+      },
+      fallback: {
+        // webpack 5 dropped automatic node-core polyfills.
+        // kevast-encrypt depends on the global `Buffer`.
+        buffer: require.resolve('buffer/'),
       },
     },
     module: {
