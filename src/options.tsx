@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ReactDom from 'react-dom';
+import { createRoot } from 'react-dom/client';
 const style = require('./options.module.scss');
 import './global.scss';
 
@@ -39,7 +39,7 @@ class Options extends Component {
   }
 }
 
-ReactDom.render(
-  <Options />,
-  document.getElementById('root'),
-);
+const optionsRoot = document.getElementById('root');
+if (optionsRoot) {
+  createRoot(optionsRoot).render(<Options />);
+}

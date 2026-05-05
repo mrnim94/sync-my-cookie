@@ -123,9 +123,24 @@ class Console extends Component<Prop, State> {
     }
   }
 
-  public async componentWillReceiveProps(nextProps: Prop) {
-    const config = await auto.get(nextProps.domain);
-    this.setState({...config});
+  public async componentDidUpdate(prevProps: Prop) {
+    // React 18: replaces deprecated componentWillReceiveProps. We only
+    // want to refetch the auto-config when the domain prop actually
+    // changes; otherwise we would loop on every setState().
+    if (prevProps.domain !== this.props.domain) {
+      const config = await auto.get(this.props.domain);
+      this.setState({...config});
+    }
+  }
+
+  public async componentDidMount() {
+    // Initial load — componentDidUpdate only fires on subsequent prop
+    // changes, not on first mount. Keep the same auto-config behavior
+    // as the legacy componentWillReceiveProps did when first invoked.
+    if (this.props.domain) {
+      const config = await auto.get(this.props.domain);
+      this.setState({...config});
+    }
   }
 
   private handleAutoPushConfigClick = async () => {
