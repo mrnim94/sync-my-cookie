@@ -1,6 +1,6 @@
 {
   "name": "sync-my-cookie",
-  "version": "3.0.22",
+  "version": "3.0.23",
   "description": "A Chrome extension to synchronize cookies.",
   "main": "index.js",
   "repository": "git@github.com:Andiedie/sync-my-cookie.git",
@@ -33,7 +33,8 @@
     "@types/node": "^22.15.18",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
-    "antd": "^3.13.5",
+    "@ant-design/icons": "^4.8.3",
+    "antd": "^4.24.16",
     "babel-loader": "^9.2.1",
     "babel-plugin-import": "^1.11.0",
     "babel-plugin-lodash": "^3.3.4",
