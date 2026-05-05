@@ -1,7 +1,6 @@
 {
   "plugins": [
-    ["lodash"],
-    ["import", { "libraryName": "antd", "style": true }],
+    ["lodash"]
   ],
   "presets": [
     "@babel/react",

@@ -120,7 +120,7 @@ class Setting extends Component<Prop, State> {
           </Button>
           <Modal
             title='Import Setting'
-            visible={this.state.importModal}
+            open={this.state.importModal}
             onOk={this.handleImport}
             onCancel={this.handleImportClose}
           >

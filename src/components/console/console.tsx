@@ -65,7 +65,7 @@ class Console extends Component<Prop, State> {
                 </Tooltip>
                 <Modal
                   title='Configure Auto Push Rules'
-                  visible={this.state.configuring}
+                  open={this.state.configuring}
                   onOk={this.handleAutoPushConfigDone}
                   onCancel={this.handleAutoPushConfigClose}
                 >

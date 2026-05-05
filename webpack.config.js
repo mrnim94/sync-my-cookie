@@ -88,16 +88,10 @@ function create(file) {
             'sass-loader'
           ),
         },
-        {
-          test: /.less$/,
-          use: getStyleLoaders(
-            {
-              importLoaders: 2,
-            },
-            'less-loader',
-            { lessOptions: { javascriptEnabled: true, math: 'always' } },
-          ),
-        },
+        // antd 5 uses CSS-in-JS, so the project no longer needs less.
+        // less-loader / less / babel-plugin-import were removed alongside
+        // the antd 4 -> 5 bump. If we ever need .less again, re-add the
+        // dependencies and a less rule here.
       ],
     },
     plugins,
