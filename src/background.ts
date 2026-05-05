@@ -8,7 +8,7 @@ const DEBOUNCE_DELAY = 10000;
 
 // Auto Merge
 const handleAutoMerge = async () => {
-  await gist.updateData()
+  await gist.updateData();
   console.log('自动合并运行中');
   const list = (await filterDomain('autoMerge')).map(([domain]) => domain);
   if (list.length === 0) {
@@ -131,7 +131,7 @@ function badge(text: string, color: string = 'red', delay: number = 10000) {
   // 定时器改为使用 Chrome 的 Alarm API
   const alarmName = `badge_clear_${Date.now()}`;
   chrome.alarms.create(alarmName, {
-    delayInMinutes: delay / 60000
+    delayInMinutes: delay / 60000,
   });
 }
 

@@ -31,17 +31,17 @@ class DomainList extends Component<Prop> {
         />
       );
     });
-  }
+  };
   private handleDomainClick = (domain: string) => {
     if (this.props.onDomainChange) {
       this.props.onDomainChange(domain);
     }
-  }
+  };
   private handleDomainClose = (domain: string) => {
     if (this.props.onDomainClose) {
       this.props.onDomainClose(domain);
     }
-  }
+  };
 }
 
 export default DomainList;

@@ -88,7 +88,7 @@ class TextFit extends Component<Prop, State> {
       // on the next render.
       inner.style.fontSize = `${best}px`;
     }
-  }
+  };
 
   public render() {
     return (

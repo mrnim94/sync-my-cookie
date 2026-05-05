@@ -157,7 +157,7 @@ class Console extends Component<Prop, State> {
       configuring: true,
       options,
     });
-  }
+  };
   private handleAutoPushConfigDone = async () => {
     const config: AutoConfiguration = {
       autoPush: this.state.autoPush,
@@ -166,22 +166,22 @@ class Console extends Component<Prop, State> {
     };
     await auto.set(this.props.domain, config);
     this.handleAutoPushConfigClose();
-  }
+  };
   private handleAutoPushConfigClose = () => {
     this.setState({configuring: false});
-  }
+  };
   private handleAutoPushConfigChange = async (value: string[]) => {
     // antd 5 Select<string[]> with mode='tags' returns the chosen tag
     // strings directly in `value`, so we just persist that array.
     // (antd v3/v4 used to pass ReactElement options here; we used to
     // pull `option.key` out of them - the new API is simpler.)
     this.setState({autoPushName: value});
-  }
+  };
   private handlePush = async () => {
     this.setState({pushLoading: true});
     await this.props.onPush();
     this.setState({pushLoading: false});
-  }
+  };
   private handleAutoPushChange = async (checked: boolean) => {
     this.setState({
       autoPush: checked,
@@ -192,7 +192,7 @@ class Console extends Component<Prop, State> {
       autoPushName: this.state.autoPushName,
     };
     await auto.set(this.props.domain, config);
-  }
+  };
   private handleAutoMergeChange = async (checked: boolean) => {
     this.setState({
       autoMerge: checked,
@@ -203,7 +203,7 @@ class Console extends Component<Prop, State> {
       autoPushName: this.state.autoPushName,
     };
     await auto.set(this.props.domain, config);
-  }
+  };
 }
 
 export default Console;

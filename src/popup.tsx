@@ -91,7 +91,7 @@ class Popup extends Component<{}, State> {
         },
       });
     }));
-  }
+  };
 
   private handleDomainChange = async (domain: string) => {
     this.setState((prevState) => {
@@ -100,7 +100,7 @@ class Popup extends Component<{}, State> {
         domainList: move2Front(prevState.domainList, domain),
       };
     });
-  }
+  };
 
   private handleMerge = async () => {
     const savedCookie = await gist.getCookies(this.state.currentDomain);
@@ -109,7 +109,7 @@ class Popup extends Component<{}, State> {
       title: 'Merged',
       content: `${savedCookie.length} cookies merged`,
     });
-  }
+  };
 
   private handlePush = async () => {
     const cookies = await chromeUtils.exportCookies(this.state.currentDomain);
@@ -133,14 +133,14 @@ class Popup extends Component<{}, State> {
         domainList: move2Front(domainList, prevState.currentDomain),
       };
     });
-  }
+  };
 
   private handleSet = async () => {
     this.setState({
       isSetting: false,
     });
     this.initGist();
-  }
+  };
 
   private async initGist() {
     const ready = await gist.init();

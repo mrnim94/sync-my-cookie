@@ -40,20 +40,20 @@ class Domain extends Component<Prop> {
   }
   private handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     (e.target as HTMLImageElement).style.opacity = '0';
-  }
+  };
   private handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const domain = event.currentTarget.dataset.domain;
     if (this.props.onClick && domain) {
       this.props.onClick(domain);
     }
-  }
+  };
   private handleClose = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
     const domain = event.currentTarget.dataset.domain;
     if (this.props.onClose && domain) {
       this.props.onClose(domain);
     }
-  }
+  };
 }
 
 export default Domain;
