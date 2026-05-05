@@ -1,6 +1,6 @@
 {
   "name": "SyncMyCookie (V3)",
-  "version": "3.0.0",
+  "version": "3.0.17",
   "description": "A Chrome extension to synchronize cookies.",
   "manifest_version": 3,
   "minimum_chrome_version": "88",
@@ -22,6 +22,13 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["cookies", "storage", "tabs", "alarms"],
-  "host_permissions": ["<all_urls>"]
+  "permissions": [
+    "cookies",
+    "storage",
+    "tabs",
+    "alarms"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
 }
